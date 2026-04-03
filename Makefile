@@ -10,7 +10,7 @@ test:
 	go test -v ./...
 
 build:
-	make dir -p bin
+	mkdir -p bin
 	go build -o $(BINARY) ./cmd/api
 
 run:
