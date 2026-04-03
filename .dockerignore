@@ -1,0 +1,6 @@
+.git
+.gitlab
+bin
+tmp
+*.log
+README.md

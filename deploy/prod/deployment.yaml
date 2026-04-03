@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicdref
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cicdref
+  template:
+    metadata:
+      labels:
+        app: cicdref
+    spec:
+      containers:
+        - name: cicdref
+          image: registry.example.com/cicdref:prod
+          ports:
+            - containerPort: 8080
+          env:
+            - name: APP_MESSAGE
+              value: "running in prod"
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicdref
+spec:
+  selector:
+    app: cicdref
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
